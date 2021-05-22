@@ -1,13 +1,14 @@
 import puppeteer from "https://deno.land/x/puppeteer@9.0.0/mod.ts";
 import { join, resolve } from "https://deno.land/std@0.96.0/path/mod.ts";
 import { green, red } from 'https://deno.land/std/fmt/colors.ts'
+import { isValidURL } from './helpers.ts';
 
 const homedir = Deno.env.get("HOME"),
 args = Deno.args,
 url = args[0];
 
 
-if (!url) { 
+if (!url || !isValidURL(url)) { 
     console.log(red('Por favor introduce una url valida'))
     Deno.exit();
 }
